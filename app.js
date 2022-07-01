@@ -1,36 +1,30 @@
 const express = require('express'),
       app  = express(),
+      router = express.Router(),
       dbConfig = require('./Config/dbConfig'),
       Routes = require('./Routes/index'),
       bodyParser = require('body-parser'),
-      swaggerJsdoc = require("swagger-jsdoc"),
-      { options } = require('./Lib/swaggerDoc'),
-      swaggerUi = require("swagger-ui-express");
       PORT = process.env.SERVER_PORT || 4000;
       require('dotenv').config(),
-      // cron = require('node-cron');
+      path = require('path');
 
 
 
-// parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
-// parse Application/json
 app.use(bodyParser.json())
 
 app.listen(PORT, () => {
-  console.log(`API is running on: http://localhost:${PORT}`)
+  console.log(`API is running on: https://api-f1.herokuapp.com:${PORT}`)
 })
 
-const specs = swaggerJsdoc(options);
-app.use('/api-docs',
-swaggerUi.serve,
-swaggerUi.setup(specs)
-);
-app.use('/api/v1/', Routes)
+app.use('/v1/api/', Routes)
 
-app.get('*', (req, res) => {
-  res.status(404).type('txt').send('nothing to see here ):');
+app.use((req, res, next) => {
+  res.status(404).sendFile(path.join(__dirname, '/Utils/404-template.html'));
+})
+
+app.get('*',(req, res) => {
+  res.status(404).type('html').send('<a href="https://api-f1.herokuapp.com/v1/api">documentation</a>');
 });
-
 
 dbConfig.connectDb(process.env.DATABASE_HOST);

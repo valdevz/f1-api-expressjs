@@ -2,7 +2,7 @@ const options = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "API F1 for free",
+      title: "F1 API for free",
       version: "1.0.0",
       description:
         "This is an initial version of a free F1 API",
@@ -21,7 +21,7 @@ const options = {
     "produces": ["application/json"],
     servers: [
       {
-        url: "http://localhost:3000/v1/api"
+        url: "https://api-f1.herokuapp.com/v1/api/"
       }
     ],
     paths: {

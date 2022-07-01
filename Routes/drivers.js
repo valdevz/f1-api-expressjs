@@ -4,7 +4,6 @@ const express = require('express'),
 
 router.get('/', (req, res) => {
   try {
-    console.log('pasa por aquí ')
     Controller.DriverController.getAllDrivers()
       .then(result => {
         res.status(200).type('json').send(result)
