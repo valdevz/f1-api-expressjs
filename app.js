@@ -4,7 +4,7 @@ const express = require('express'),
       dbConfig = require('./Config/dbConfig'),
       Routes = require('./Routes/index'),
       bodyParser = require('body-parser'),
-      PORT = process.env.SERVER_PORT || 4000;
+      PORT = process.env.PORT;
       require('dotenv').config(),
       path = require('path');
 
