@@ -13,7 +13,7 @@ const options = {
       contact: {
         name: "Valdevz",
         url: "https://github.com/valdevz",
-        email: "valdevz@gmail.com",
+        email: "j.valdevz@gmail.com",
       },
     },
     "schemes": ["http"],
